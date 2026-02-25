@@ -1,0 +1,843 @@
+/* =========================================
+   1. VARIABLES Y CONFIGURACIÓN BASE
+   ========================================= */
+:root {
+    --color-bg: #f9f8f4;        /* Color crema del fondo */
+    --color-blue: #1b2a40;      /* Azul oscuro del logo y textos */
+    --color-gold: #a68a4f;      /* Dorado del logo y botón */
+    --color-gold-hover: #8e7441;/* Dorado más oscuro al pasar el mouse */
+    --color-gray: #7a8290;      /* Gris para etiquetas pequeñas */
+    --color-divider: #e0ddd1;   /* Línea separadora */
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-blue);
+    overflow-x: hidden;
+}
+
+/* =========================================
+   2. ENCABEZADO (HEADER)
+   ========================================= */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background-color: var(--color-bg);
+    
+    /* --- LÍNEAS NUEVAS PARA QUE SEA FIJO --- */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Esto asegura que el menú siempre esté por encima de las fotos y tarjetas */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); /* Una sombrita súper sutil para que se separe del fondo al bajar */
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para la imagen del logo nuevo */
+.logo-img {
+    max-width: 220px; /* Puedes subir o bajar este número para hacerlo más grande o pequeño */
+    height: auto;
+    display: block;
+}
+
+/* Ocultar el botón hamburguesa en PC */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-blue);
+    cursor: pointer;
+    padding: 5px;
+}
+
+.brand-name {
+    margin: 0;
+    font-family: 'Lora', serif;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.text-blue { color: var(--color-blue); }
+.text-gold { color: var(--color-gold); }
+
+.brand-slogan {
+    margin: 2px 0 0 0;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--color-gold);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--color-blue);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: relative; /* Necesario para la línea animada */
+    padding-bottom: 5px; /* Da un respiro entre la letra y la línea */
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover { 
+    color: var(--color-gold); 
+}
+
+/* La magia: Línea dorada oculta que aparece al pasar el mouse */
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0; /* Empieza invisible */
+    height: 2px; /* Grosor de la línea */
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-gold);
+    transition: width 0.3s ease; /* Efecto suave de expansión */
+}
+
+.main-nav a:hover::after {
+    width: 100%; /* La línea crece hasta ocupar toda la palabra */
+}
+
+.divider {
+    width: 1px;
+    height: 35px;
+    background-color: var(--color-divider);
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.contact-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--color-gray);
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+}
+
+.phone-number {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--color-blue);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.phone-number svg { color: var(--color-gold); }
+
+.btn-solicitar {
+    background-color: var(--color-gold);
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-solicitar:hover { background-color: var(--color-gold-hover); }
+
+/* =========================================
+   3. SECCIÓN HERO (PRINCIPAL)
+   ========================================= */
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 50px;
+}
+
+/* Columna Izquierda */
+.hero-content {
+    flex: 1;
+    max-width: 550px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(166, 138, 79, 0.3);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+
+.hero-title {
+    font-size: 60px;
+    color: var(--color-blue);
+    line-height: 1.1;
+    margin: 0 0 25px 0;
+    font-weight: 600;
+}
+
+.highlight-gold { color: var(--color-gold); }
+
+.italic-serif {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.hero-description {
+    font-size: 16px;
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 480px;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.btn-dark {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-blue);
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-dark:hover {
+    background-color: #0f1826;
+    transform: translateY(-2px);
+}
+
+.btn-text {
+    color: var(--color-blue);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.btn-text:hover { color: var(--color-gold); text-decoration: underline; }
+
+/* Columna Derecha (Imagen y cuadro de 20+ años) */
+.hero-visual {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.image-frame {
+    background-color: white;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    transform: rotate(2deg);
+    transition: transform 0.5s ease;
+    max-width: 450px;
+    width: 100%;
+}
+
+.image-frame:hover { transform: rotate(0deg); }
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+.floating-badge {
+    position: absolute;
+    top: 40px;
+    left: -30px; /* Lo mueve un poco hacia la izquierda para que flote sobre la imagen */
+    background-color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.badge-number {
+    font-family: 'Lora', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-gold);
+    line-height: 1;
+}
+
+.badge-text {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-blue);
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+/* =========================================
+   4. DISEÑO RESPONSIVE (MÓVILES Y TABLETS)
+   ========================================= */
+@media (max-width: 1024px) {
+    .main-header { padding: 20px 30px; }
+    .hero-section { padding: 50px 30px; gap: 30px; }
+    .hero-title { font-size: 48px; }
+}
+
+@media (max-width: 850px) {
+    /* El encabezado ahora tiene el logo a la izq y el botón a la der */
+    .main-header {
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        padding: 15px 20px;
+    }
+    
+    .logo-img { max-width: 140px; } /* Logo un poco más chico para que entre bien */
+
+    /* Mostramos el botón hamburguesa */
+    .menu-toggle { display: block; }
+
+    /* Ocultamos todo el menú de enlaces y contacto por defecto */
+    .header-actions {
+        display: none; 
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+        padding-top: 20px;
+        margin-top: 15px;
+        border-top: 1px solid var(--color-divider);
+    }
+
+    /* Esta clase "active" se agrega cuando tocamos el botón con JS */
+    .header-actions.active { display: flex; }
+    
+    .main-nav ul { 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 20px; 
+    }
+    
+    .divider { display: none; }
+    .contact-info { align-items: center; }
+    .btn-solicitar { width: 100%; text-align: center; box-sizing: border-box; }
+
+    /* Apilamos el Hero en móviles */
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-description { text-align: center; }
+    
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-dark { width: 100%; justify-content: center; box-sizing: border-box; }
+    
+    .hero-visual {
+        justify-content: center;
+        margin-top: 40px;
+        width: 100%;
+    }
+
+    .floating-badge {
+        left: 0;
+        top: -20px;
+    }
+
+    .logo-img {
+        max-width: 180px; /* Más pequeño para la pantalla del celular */
+    }
+
+    /* Adapta el pie de página en móviles */
+    .footer-top {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .footer-desc {
+        margin: 0 auto;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    /* Traemos al pie de página al orden (MÓVILES) */
+    .site-footer {
+        padding: 50px 20px 90px 20px !important; /* Le damos 90px de espacio abajo para que no choque con el botón de WhatsApp */
+    }
+
+    .footer-header {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .footer-main {
+        grid-template-columns: 1fr !important; /* Obliga a 1 sola columna sí o sí */
+        text-align: center;
+        gap: 40px;
+        padding: 0 10px;
+    }
+
+    .footer-desc {
+        margin: 0 auto;
+    }
+
+    .footer-links-list {
+        align-items: center; /* Centra los menús de navegación */
+    }
+
+    /* Traemos los servicios de vuelta del sabático (MÓVILES) */
+    .services-grid {
+        grid-template-columns: 1fr !important; /* Fuerza a 1 sola columna sí o sí */
+        gap: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .service-card {
+        padding: 40px 20px; /* Ajustamos el relleno para que el texto respire */
+        margin: 0 10px; /* Un pequeño margen a los lados para que no toque los bordes del cel */
+    }
+
+    /* Traemos al equipo de vuelta a la oficina (MÓVILES) */
+    .team-grid {
+        grid-template-columns: 1fr !important; /* Fuerza a 1 sola columna sí o sí */
+        gap: 30px;
+        padding: 0 20px; /* Le da un respiro a los lados para que no toque los bordes */
+    }
+    
+}
+
+/* Ajuste del botón WhatsApp en móviles */
+    .whatsapp-btn {
+        bottom: 20px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+    }
+    .whatsapp-btn svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    /* Ajuste de socios corporativos en móvil */
+    .partners-grid {
+        gap: 30px;
+    }
+    
+    .partner-logo {
+        max-width: 90px; /* Logos un poco más pequeños en celular */
+    }
+
+    /* Adapta el equipo a 1 columna en móviles */
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .team-title {
+        font-size: 32px;
+    }
+
+/* =========================================
+   5. SECCIÓN SERVICIOS
+   ========================================= */
+.services-section {
+    padding: 100px 40px;
+    background-color: white; /* Fondo blanco para que las tarjetas resalten */
+    text-align: center;
+}
+
+.services-header {
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
+
+.services-title {
+    font-family: 'Lora', serif;
+    font-size: 42px;
+    color: var(--color-blue);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.services-subtitle {
+    font-size: 16px;
+    color: #5a6475;
+    line-height: 1.6;
+}
+
+/* La cuadrícula de 4 columnas */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Tarjetas individuales */
+.service-card {
+    background-color: var(--color-bg); /* El color cremita de la página */
+    border: 1px solid rgba(166, 138, 79, 0.2); /* Borde dorado muy suave */
+    padding: 50px 30px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Para el efecto al pasar el mouse */
+}
+
+.service-card:hover {
+    transform: translateY(-8px); /* Sube ligeramente */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05); /* Sombra elegante */
+}
+
+.service-icon {
+    color: var(--color-gold);
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+.service-card h3 {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    color: var(--color-blue);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.service-card p {
+    font-size: 14px;
+    color: #5a6475;
+    line-height: 1.6;
+    margin: 0;
+}
+
+  /* =========================================
+   6. PIE DE PÁGINA (FOOTER) - ESTILO CORPORATIVO
+   ========================================= */
+.site-footer {
+    background-color: var(--color-blue); /* Tu color azul oscuro */
+    padding: 60px 80px 20px;
+    color: white;
+}
+
+/* --- Fila Superior (Logo y Datos) --- */
+.footer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    gap: 20px;
+}
+
+.footer-logo-img {
+    max-width: 220px;
+    height: auto;
+    display: block;
+}
+
+.footer-header-info p {
+    font-size: 14px;
+    color: #e2e8f0; /* Gris clarito elegante */
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Línea separadora */
+.footer-divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    max-width: 1200px;
+    margin: 0 auto 50px auto;
+}
+
+/* --- Fila Inferior (Columnas) --- */
+.footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr; /* La primera columna (Nosotros) es más ancha */
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto 50px auto;
+}
+
+.footer-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 25px 0;
+    color: white;
+}
+
+.footer-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #cbd5e1; 
+    max-width: 450px;
+    margin: 0;
+}
+
+/* Listas de enlaces */
+.footer-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links-list a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.footer-links-list a:hover {
+    color: var(--color-gold);
+    padding-left: 5px; /* Un pequeño empujón a la derecha al pasar el mouse */
+}
+
+/* --- Barra Inferior --- */
+.footer-bottom {
+    text-align: center;
+    font-size: 12px;
+    color: #64748b;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+
+/* =========================================
+   BOTÓN FLOTANTE DE WHATSAPP
+   ========================================= */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px; /* Aquí le indicamos que vaya a la izquierda */
+    background-color: #25D366; /* Verde oficial de WhatsApp */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); /* Sombra elegante */
+    z-index: 9999; /* Esto asegura que NUNCA sea tapado por otra cosa */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-btn svg {
+    width: 35px;
+    height: 35px;
+    fill: white; /* Ícono en color blanco */
+}
+
+/* Efecto al pasar el mouse por encima (Solo en PC) */
+.whatsapp-btn:hover {
+    transform: scale(1.1) translateY(-5px); /* Se agranda y sube un poquito */
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+}
+
+/* =========================================
+   SOCIOS CORPORATIVOS
+   ========================================= */
+.partners-section {
+    background-color: #f8fafc; /* Un gris/azulado súper claro y elegante */
+    padding: 60px 40px;
+    text-align: center;
+    border-top: 1px solid var(--color-divider);
+    border-bottom: 1px solid var(--color-divider);
+}
+
+.partners-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b; /* Gris corporativo */
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+.partners-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Para que bajen a la siguiente línea si no caben */
+    gap: 60px; /* Separación entre logos */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* El truco premium: Logos en gris que se pintan al tocarlos */
+.partner-logo {
+    max-width: 130px; /* Tamaño de los logos */
+    height: auto;
+    filter: grayscale(100%) opacity(50%); /* Gris y medio transparentes */
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.partner-logo:hover {
+    filter: grayscale(0%) opacity(100%); /* Vuelven a su color original */
+    transform: scale(1.05); /* Crecen un poquito */
+}
+
+/* =========================================
+   SECCIÓN: EL EQUIPO
+   ========================================= */
+.team-section {
+    padding: 100px 40px;
+    background-color: var(--color-bg); /* Fondo crema para contrastar */
+    text-align: center;
+}
+
+.team-header {
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
+
+.team-title {
+    font-family: 'Lora', serif;
+    font-size: 42px;
+    color: var(--color-blue);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.team-subtitle {
+    font-size: 16px;
+    color: #5a6475;
+    line-height: 1.6;
+}
+
+/* Cuadrícula de 3 columnas exactas */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Tarjeta individual del abogado */
+.team-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden; /* Esto es para que la foto no se salga de los bordes redondeados */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left; /* Alineamos el texto a la izquierda dentro de la tarjeta */
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* Contenedor de la foto para el efecto zoom */
+.team-img-wrapper {
+    width: 100%;
+    height: 350px; /* Altura fija para que todas las fotos se vean del mismo tamaño */
+    overflow: hidden;
+}
+
+.team-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Para que la foto se recorte bonito y no se deforme */
+    object-position: top; /* Para que siempre se vean las caras */
+    transition: transform 0.5s ease;
+}
+
+/* El zoom suave al pasar el mouse por la tarjeta */
+.team-card:hover .team-img {
+    transform: scale(1.08);
+}
+
+.team-info {
+    padding: 30px;
+}
+
+.team-info h3 {
+    font-family: 'Lora', serif;
+    font-size: 24px;
+    color: var(--color-blue);
+    margin: 0 0 5px 0;
+}
+
+.team-role {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.team-info p {
+    font-size: 14px;
+    color: #5a6475;
+    line-height: 1.6;
+    margin: 0;
+}
